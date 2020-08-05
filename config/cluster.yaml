@@ -1,0 +1,13 @@
+__default__:
+    name: default
+    time: 4:00:00
+    pmem: 4gb
+    vmem: 6gb
+    out: pbs_out
+    nodes: 1:ppn=10
+
+run_songbird:
+    time: 12:00:00
+    name: run_songbird
+    pmem: 8gb
+    vmem: 12gb

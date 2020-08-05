@@ -1,0 +1,10 @@
+songbird_params:
+    epochs: 1000
+    summary_interval: 1
+    formula:
+        - diet*genotype
+    diff_prior:
+        - 0.75
+        - 1.0
+    learning_rate:
+        - 0.001
