@@ -18,11 +18,6 @@ from qiime2 import Artifact, Metadata
     type=click.Path(exists=True),
     required=True,
 )
-@click.option(
-    "--output-dir",
-    type=click.Path(exists=False),
-    required=True,
-)
 def setup(feature_table, sample_metadata, output_dir):
     try:
         Artifact.load(feature_table)
