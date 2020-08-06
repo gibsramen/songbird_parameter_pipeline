@@ -1,3 +1,5 @@
+feature_table:
+sample_metadata:
 songbird_params:
     epochs: 1000
     summary_interval: 1
