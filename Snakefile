@@ -53,8 +53,8 @@ rule create_q2_file:
 
 rule run_songbird:
     input:
-        table = "[[[TABLE]]]",
-        metadata = "[[[METADATA]]]"
+        table = config["feature_table"]
+        metadata = config["sample_metadata"]
     output:
         expand(
             "results/songbird/f_{{formula}}_dp_{{dp}}_lr_{{lr}}/{res}",
