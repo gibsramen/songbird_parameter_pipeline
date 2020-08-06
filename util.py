@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 
-import os
 import re
-import sys
 
-import numpy as np
-import pandas as pd
-from qiime2 import Artifact
 from qiime2.plugins import songbird
 
-def get_summary(table, metadata, formula, base_formula, epochs=10000, **kwargs):
+
+def get_summary(table, metadata, formula, base_formula, epochs, **kwargs):
     """Get paired summary of songbird model."""
     sb_null_results = songbird.actions.multinomial(
         table=table,
@@ -19,7 +15,7 @@ def get_summary(table, metadata, formula, base_formula, epochs=10000, **kwargs):
         random_seed=42,
         min_sample_count=500,
         min_feature_count=10,
-        quiet=True,
+        silent=True,
         summary_interval=1,
         **kwargs,
     )
@@ -32,7 +28,7 @@ def get_summary(table, metadata, formula, base_formula, epochs=10000, **kwargs):
         random_seed=42,
         min_sample_count=500,
         min_feature_count=10,
-        quiet=True,
+        silent=True,
         summary_interval=1,
         **kwargs,
     )
@@ -44,19 +40,17 @@ def get_summary(table, metadata, formula, base_formula, epochs=10000, **kwargs):
 
     return sb_results, sb_null_results, sb_paired_summary
 
+
 def get_q2(summary):
     """Get Q^2 value from paired summary."""
     viz_path = f"{str(summary._archiver.data_dir)}/index.html"
 
     with open(viz_path, "r") as f:
         text = f.read()
-
-    q2_string = re.search(
-        r"Q-squared:</a></strong> (-?[\d\.]+)",
-        text,
-    )
+    q2_string = re.search(r"Q-squared:</a></strong> (-?[\d\.]+)", text,)
 
     return float(q2_string.groups()[0])
+
 
 def extract_params(text):
     """Extract parameter values from filepath."""
