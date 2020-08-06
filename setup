@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import fileinput
-import os
 
 import click
 from qiime2 import Artifact, Metadata
@@ -18,7 +17,7 @@ from qiime2 import Artifact, Metadata
     type=click.Path(exists=True),
     required=True,
 )
-def setup(feature_table, sample_metadata, output_dir):
+def setup(feature_table, sample_metadata):
     try:
         Artifact.load(feature_table)
     except Exception as e:
@@ -28,9 +27,6 @@ def setup(feature_table, sample_metadata, output_dir):
         Metadata.load(sample_metadata)
     except Exception as e:
         raise ValueError(e)
-
-    if not os.path.isdir(output_dir):
-        os.mkdir(output_dir)
 
     with fileinput.input("config/config.yaml", inplace=True) as f:
         for line in f:
