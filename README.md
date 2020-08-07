@@ -4,7 +4,7 @@ This is companion pipeline for pseudo-optimizing parameters in [Songbird](https:
 
 ### Point to data
 
-Use the included `setup` script to configure the pipeline for your own use. Arguments are the feature table, and sample metadata.
+Use the included `config.py` script to configure the pipeline for your own use. Arguments are the feature table, and sample metadata.
 
 Example usage:
 
