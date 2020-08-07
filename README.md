@@ -9,7 +9,7 @@ Use the included `setup` script to configure the pipeline for your own use. Argu
 Example usage:
 
 ```
-python setup \
+python config.py \
     --feature-table data/feature_table.qza \
     --sample-metadata data/metadata.tsv
 ```
