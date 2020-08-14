@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import os
 import fileinput
 
 import click
@@ -27,6 +28,8 @@ def setup(feature_table, sample_metadata):
         Metadata.load(sample_metadata)
     except Exception as e:
         raise ValueError(e)
+
+    os.mkdir("pbs_out")
 
     with fileinput.input("config/config.yaml", inplace=True) as f:
         for line in f:
